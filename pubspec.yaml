@@ -55,11 +55,10 @@ dependencies:
   flutter_hooks: ^0.21.0
   get_it: ^7.2.0
   equatable: ^2.0.5
-  oktoast: ^3.3.1
+  fluttertoast: ^8.0.8
   awesome_dio_interceptor: ^1.2.0
   auto_route: ^8.0.0
   flutter_pagewise: 2.0.4
-
 
 dev_dependencies:
   retrofit_generator: ^8.1.0

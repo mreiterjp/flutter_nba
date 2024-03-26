@@ -4,8 +4,9 @@ import 'package:flutter_nba/di/locator.dart';
 import 'package:flutter_nba/domain/entity/player_entity.dart';
 import 'package:flutter_nba/domain/usecase/get_players_usecase.dart';
 import 'package:flutter_nba/presentation/view/player_detail.dart';
-import 'package:flutter_nba/presentation/widgets/player_list_item.dart';
 import 'package:flutter_nba/presentation/widgets/data_search.dart';
+import 'package:flutter_nba/presentation/widgets/player_list_item.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PlayerListScreen extends StatefulWidget {
   const PlayerListScreen({super.key});
@@ -20,6 +21,10 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
   @override
   void initState() {
     super.initState();
+    fetchPlayers();
+  }
+
+  Future<List<PlayerEntity>?> fetchPlayers() async {
     final getPlayersUseCase = locator.get<GetPlayersUseCase>();
     playerStream = getPlayersUseCase.call();
   }
@@ -39,7 +44,12 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
           );
         } else if (snapshot.hasError) {
           Fimber.d('Error: ${snapshot.error}');
-          return Text('Error: ${snapshot.error}');
+          Fluttertoast.showToast(
+            msg: 'Error: ${snapshot.error}',
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+          );
+          return Container(); // Return an empty container
         } else {
           final players = snapshot.data;
           if (players == null) {
