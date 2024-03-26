@@ -28,22 +28,22 @@ class PlayerListItem extends StatelessWidget {
                 width: 60,
                 height: 60,
               ),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     '${player.firstName} ${player.lastName}',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
                     'Position: ${player.position}',
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   if (player.teamEntity != null)
                     Text(
                       'Team: ${player.teamEntity?.name ?? ""}',
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                 ],
               ),
