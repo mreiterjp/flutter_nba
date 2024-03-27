@@ -9,9 +9,14 @@ class PlayerEntity {
   final String firstName;
   final String lastName;
   final String position;
-  final int heightFeet;
-  final int heightInches;
-  final int weightPounds;
+  final String heightFeetInches;
+  final String weightPounds;
+  final String? jerseyNumber;
+  final String? college;
+  final String? country;
+  final int? draftYear;
+  final int? draftRound;
+  final int? draftNumber;
   final String? avatarUrl;
   final TeamEntity? teamEntity;
 
@@ -20,9 +25,14 @@ class PlayerEntity {
     required this.firstName,
     required this.lastName,
     required this.position,
-    required this.heightFeet,
-    required this.heightInches,
+    required this.heightFeetInches,
     required this.weightPounds,
+    this.jerseyNumber,
+    this.college,
+    this.country,
+    this.draftYear,
+    this.draftRound,
+    this.draftNumber,
     this.avatarUrl,
     this.teamEntity,
   });
@@ -38,9 +48,8 @@ class PlayerEntity {
       firstName: 'Name $id',
       lastName: 'Surname $id',
       position: ['F', 'G', 'C'][Random().nextInt(3)],
-      heightFeet: Random().nextInt(4) + 5,
-      heightInches: Random().nextInt(12),
-      weightPounds: Random().nextInt(101) + 150,
+      heightFeetInches: "${Random().nextInt(4) + 5} - ${Random().nextInt(12)}",
+      weightPounds: "${Random().nextInt(101) + 150}",
       teamEntity: TeamEntity.generateFakeTeamEntity(id),
       avatarUrl: getAvatarUrl(id),
     );
@@ -56,9 +65,14 @@ extension PlayerExtension on Player {
       firstName: firstName ?? '',
       lastName: lastName ?? '',
       position: position ?? '',
-      heightFeet: heightFeet ?? 0,
-      heightInches: heightInches ?? 0,
-      weightPounds: weightPounds ?? 0,
+      heightFeetInches: heightFeetInches ?? "0-0",
+      weightPounds: weightPounds ?? "0",
+      jerseyNumber: jerseyNumber ?? '',
+      college: college ?? '',
+      country: country ?? '',
+      draftYear: draftYear ?? 0,
+      draftRound: draftRound ?? 0,
+      draftNumber: draftNumber ?? 0,
       avatarUrl: PlayerEntity.getAvatarUrl(id),
       teamEntity: team?.toEntity(),
     );

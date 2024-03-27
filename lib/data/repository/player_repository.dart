@@ -11,7 +11,7 @@ class PlayerRepository
   /// TODO: Implement proper paging method
   Stream<List<PlayerEntity>?> getPlayers() async* {
     final players = await playerApi.getPlayers();
-    Fimber.d(' ${players}');
+    Fimber.d(' $players');
     yield  players.players.map((player) => player.toEntity()).toList();
   }
 
